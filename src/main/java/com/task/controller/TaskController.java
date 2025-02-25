@@ -13,39 +13,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.task.model.Task;
 import com.task.service.TaskService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/tasks")
+@Tag(name = "Tareas", description = "API para gestionar tareas")
 public class TaskController {
 
-    private final TaskService taskService;
+	@Autowired
+    private TaskService taskService;
 
-    @Autowired
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
-    }
-
-    @PostMapping
+    @PostMapping("/create")
+    @Operation(summary = "Crear una tarea", description = "Crea una tarea nueva")
     public Task createTask(@RequestBody Task task) {
         return taskService.createTask(task);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener tarea", description = "Obtiene una tarea por su ID")
     public Task getTaskById(@PathVariable long id) {
         return taskService.getTaskById(id).orElseThrow(() -> new RuntimeException("Task not found"));
     }
 
-    @GetMapping
+    @GetMapping("/")
+    @Operation(summary = "Obtener todas las tareas", description = "Devuelve una lista de las tareas")
     public Iterable<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/modify/{id}")
+    @Operation(summary = "Actualizar una tarea", description = "Modifica una tarea existente")
     public Task updateTask(@PathVariable long id, @RequestBody Task task) {
         task.setId(id);
         return taskService.updateTask(task);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Eliminar una tarea", description = "Elimina una tarea por su ID")
     public void deleteTask(@PathVariable long id) {
         taskService.deleteTask(id);
     }
