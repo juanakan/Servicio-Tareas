@@ -41,6 +41,12 @@ public class TaskController {
     public Iterable<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
+    
+    @GetMapping("/user/{idUsuario}")
+    @Operation(summary = "Obtener tareas de usuario", description = "Devuelve una lista de las tareas con idUsuario ")
+    public Iterable<Task> getByUserId(@PathVariable long idUsuario) {
+        return taskService.getByUserId(idUsuario);
+    }
 
     @PutMapping("/modify/{id}")
     @Operation(summary = "Actualizar una tarea", description = "Modifica una tarea existente")

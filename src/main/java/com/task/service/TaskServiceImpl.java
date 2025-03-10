@@ -30,6 +30,11 @@ public class TaskServiceImpl implements TaskService{
 	}
 	
 	@Override
+	public Iterable<Task> getByUserId(long idUser) {
+		return taskRepository.findByUserId(idUser);
+	}
+	
+	@Override
 	public Task updateTask(Task task) {
 	    return taskRepository.save(task);
 	}
@@ -38,5 +43,7 @@ public class TaskServiceImpl implements TaskService{
 	public void deleteTask(long id) {
 	    taskRepository.deleteById(id);
 	}
+
+
 }
 
