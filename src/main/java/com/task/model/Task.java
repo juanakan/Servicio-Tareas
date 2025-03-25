@@ -15,6 +15,7 @@ public class Task {
     private String description;
     private boolean completado;
     private long userId;
+    private int prioridad;
 
     public Task() {}
 
@@ -56,5 +57,13 @@ public class Task {
 
 	public void setCompletado(boolean completado) {
 		this.completado = completado;
+	}
+
+	public int getPrioridad() {
+		return prioridad;
+	}
+
+	public void setPrioridad(int prioridad) {
+		this.prioridad = prioridad;
 	}
 }
