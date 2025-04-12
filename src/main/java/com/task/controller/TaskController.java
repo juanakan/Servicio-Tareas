@@ -27,6 +27,10 @@ public class TaskController {
     @PostMapping("/create")
     @Operation(summary = "Crear una tarea", description = "Crea una tarea nueva")
     public Task createTask(@RequestBody Task task) {
+    	if(task.getId()==0) {
+			 task.setId(null);
+		 }
+    	task.setTitulo(task.getTitulo().toUpperCase());
         return taskService.createTask(task);
     }
 

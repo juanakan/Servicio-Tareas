@@ -10,10 +10,9 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String titulo;
     private String description;
-    private boolean completado;
     private long userId;
     private int prioridad;
 
@@ -23,7 +22,7 @@ public class Task {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -47,16 +46,9 @@ public class Task {
 		return titulo;
 	}
 
-	public boolean isCompletado() {
-		return completado;
-	}
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-
-	public void setCompletado(boolean completado) {
-		this.completado = completado;
 	}
 
 	public int getPrioridad() {
